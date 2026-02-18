@@ -7,9 +7,18 @@ body { background: #f4f7f2; }
   position: fixed;
   top: 12px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -16px) scale(.96);
   width: min(980px, calc(100% - 20px));
   z-index: 1200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .28s ease;
+}
+
+.site-header.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0) scale(1);
 }
 
 .header-shell {
