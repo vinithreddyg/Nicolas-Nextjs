@@ -1,5 +1,3 @@
-import DisplayWorkImages from './DisplayWorkImages';
-
 const services = [
   'Remodeling',
   'Patios',
@@ -20,7 +18,6 @@ export default function ServiceSections() {
               <span className="check">&#10003;</span>
               <span>{service}</span>
             </div>
-            {service === 'Trimming' && <DisplayWorkImages />}
           </div>
         ))}
       </div>

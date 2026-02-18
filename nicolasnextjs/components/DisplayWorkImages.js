@@ -8,10 +8,13 @@ const fallbackImages = [
   'https://images.unsplash.com/photo-1599619351208-3e6c839d6828?auto=format&fit=crop&w=800&q=80',
 ];
 
-export default async function DisplayWorkImages() {
-  const trimmingImages = await getTrimmingImageUrls();
+export default async function DisplayWorkImages({ trimmingImages }) {
+  const s3Images =
+    Array.isArray(trimmingImages) && trimmingImages.length > 0
+      ? trimmingImages
+      : await getTrimmingImageUrls();
   const imageList =
-    Array.isArray(trimmingImages) && trimmingImages.length > 0 ? trimmingImages : fallbackImages;
+    Array.isArray(s3Images) && s3Images.length > 0 ? s3Images : fallbackImages;
 
   return (
     <section className="gallery-wrapper">
