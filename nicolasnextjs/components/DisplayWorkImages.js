@@ -7,8 +7,9 @@ const fallbackImages = [
   'https://images.unsplash.com/photo-1599619351208-3e6c839d6828?auto=format&fit=crop&w=800&q=80',
 ];
 
-export default function DisplayWorkImages({ images = [] }) {
-  const imageList = Array.isArray(images) && images.length > 0 ? images : fallbackImages;
+export default function DisplayWorkImages({ trimmingImages = [] }) {
+  const imageList =
+    Array.isArray(trimmingImages) && trimmingImages.length > 0 ? trimmingImages : fallbackImages;
 
   return (
     <section className="gallery-wrapper">

@@ -20,7 +20,7 @@ export default function ServiceSections({ trimmingImages = [] }) {
               <span className="check">&#10003;</span>
               <span>{service}</span>
             </div>
-            {service === 'Trimming' && <DisplayWorkImages images={trimmingImages} />}
+            {service === 'Trimming' && <DisplayWorkImages trimmingImages={trimmingImages} />}
           </div>
         ))}
       </div>
