@@ -41,11 +41,13 @@ export default async function getTrimmingImageUrls() {
         ...(IMAGE_EXTENSIONS.some((ext) => referenceKey.toLowerCase().endsWith(ext)) ? [referenceKey] : []),
       ]),
     ).sort();
+    console.log('Found S3 keys:', keys);
 
     const publicUrls = keys.map(
       (key) => `https://${bucket}.s3.${region}.amazonaws.com/${encodeS3Key(key)}`,
     );
 
+    console.log('Trimming image URLs:', publicUrls);
     return publicUrls;
   } catch {
     return [];
