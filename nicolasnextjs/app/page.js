@@ -5,6 +5,7 @@ import AboutSection from '../components/AboutSection';
 import MobileButton from '../components/MobileButton';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 export default async function Page() {
   return (
