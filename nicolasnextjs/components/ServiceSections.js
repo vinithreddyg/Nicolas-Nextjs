@@ -1,3 +1,5 @@
+import DisplayWorkImages from './DisplayWorkImages';
+
 const services = [
   'Remodeling',
   'Patios',
@@ -7,15 +9,18 @@ const services = [
   'And More',
 ];
 
-export default function ServiceSections() {
+export default function ServiceSections({ trimmingImages = [] }) {
   return (
     <section className="services" id="services">
       <h2>Our Services</h2>
       <div className="grid">
         {services.map((service) => (
-          <div key={service} className="card">
-            <span className="check">✓</span>
-            <span>{service}</span>
+          <div key={service}>
+            <div className="card">
+              <span className="check">&#10003;</span>
+              <span>{service}</span>
+            </div>
+            {service === 'Trimming' && <DisplayWorkImages images={trimmingImages} />}
           </div>
         ))}
       </div>

@@ -1,6 +1,5 @@
 import HeroSection from '../components/HeroSection';
 import ServiceSections from '../components/ServiceSections';
-import DisplayWorkImages from '../components/DisplayWorkImages';
 import AboutSection from '../components/AboutSection';
 import MobileButton from '../components/MobileButton';
 import getTrimmingImageUrls from '../public/lib/getTrimmingImageUrls';
@@ -13,11 +12,9 @@ export default async function Page() {
   return (
     <main className="page">
       <HeroSection />
-      <ServiceSections />
-      <div> display images</div>
-      <DisplayWorkImages images={trimmingImages}/>
+      <ServiceSections trimmingImages={trimmingImages} />
       <AboutSection />
-       <AboutSection />
+      <AboutSection />
       <MobileButton />
     </main>
   );
