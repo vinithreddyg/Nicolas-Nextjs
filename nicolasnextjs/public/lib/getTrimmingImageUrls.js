@@ -6,6 +6,7 @@ const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp'];
 export default async function getTrimmingImageUrls() {
   const bucket = process.env.S3_BUCKET_NAME || 'nicolas-project-images';
   const prefix = process.env.S3_TRIMMING_PREFIX || 'Trimming/';
+  const referenceKey = process.env.S3_TRIMMING_REFERENCE_KEY || 'Trimming/tr1.jpeg';
   const region = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'us-east-1';
 
   const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
@@ -28,10 +29,17 @@ export default async function getTrimmingImageUrls() {
       }),
     );
 
-    const keys = (response.Contents || [])
+    const listedKeys = (response.Contents || [])
       .map((item) => item.Key)
       .filter(Boolean)
       .filter((key) => IMAGE_EXTENSIONS.some((ext) => key.toLowerCase().endsWith(ext)));
+
+    const keys = Array.from(
+      new Set([
+        ...listedKeys,
+        ...(IMAGE_EXTENSIONS.some((ext) => referenceKey.toLowerCase().endsWith(ext)) ? [referenceKey] : []),
+      ]),
+    );
 
     const signedUrls = await Promise.all(
       keys.map((key) =>
