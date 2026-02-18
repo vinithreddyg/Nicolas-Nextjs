@@ -20,7 +20,7 @@ export default function DisplayWorkImages({ images = [] }) {
             alt={`Work image ${index + 1}`}
             width={800}
             height={600}
-            unoptimized={src.includes('X-Amz-Algorithm=AWS4-HMAC-SHA256')}
+            unoptimized={src.toLowerCase().includes('x-amz-algorithm=aws4-hmac-sha256')}
           />
         ))}
       </div>
