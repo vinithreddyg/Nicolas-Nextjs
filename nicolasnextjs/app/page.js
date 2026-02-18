@@ -5,6 +5,8 @@ import AboutSection from '../components/AboutSection';
 import MobileButton from '../components/MobileButton';
 import getTrimmingImageUrls from '../public/lib/getTrimmingImageUrls';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page() {
   const trimmingImages = await getTrimmingImageUrls();
 
@@ -12,7 +14,7 @@ export default async function Page() {
     <main className="page">
       <HeroSection />
       <ServiceSections />
-      <DisplayWorkImages images={trimmingImages} />
+      <DisplayWorkImages images={trimmingImages}/>
       <AboutSection />
       <MobileButton />
     </main>
