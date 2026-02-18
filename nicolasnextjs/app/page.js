@@ -14,7 +14,6 @@ export default async function Page() {
       <HeroSection />
       <ServiceSections trimmingImages={trimmingImages} />
       <AboutSection />
-      <AboutSection />
       <MobileButton />
     </main>
   );
