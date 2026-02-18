@@ -29,11 +29,13 @@ export default async function getTrimmingImageUrls() {
         Prefix: prefix,
       }),
     );
+    console.log('S3 ListObjectsV2 response:', response);
 
     const listedKeys = (response.Contents || [])
       .map((item) => item.Key)
       .filter(Boolean)
       .filter((key) => IMAGE_EXTENSIONS.some((ext) => key.toLowerCase().endsWith(ext)));
+      console.log('Listed trimming image keys:', listedKeys);
 
     const keys = Array.from(
       new Set([
@@ -54,9 +56,10 @@ export default async function getTrimmingImageUrls() {
         ),
       ),
     );
-
+console.log('Trimming image URLs:', signedUrls);
     return signedUrls;
-  } catch {
+  } catch (error) {
+    console.error('Error generating trimming image URLs:', error);
     return [];
   }
 }
