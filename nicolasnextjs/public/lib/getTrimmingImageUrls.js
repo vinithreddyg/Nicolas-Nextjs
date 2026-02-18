@@ -4,10 +4,10 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp'];
 
 export default async function getTrimmingImageUrls() {
-  const bucket = process.env.S3_BUCKET_NAME || 'nicolas-project-images';
+  const bucket = process.env.AWS_BUCKET_NAME || 'nicolas-project-images';
   const prefix = process.env.S3_TRIMMING_PREFIX || 'Trimming/';
   const referenceKey = process.env.S3_TRIMMING_REFERENCE_KEY || 'Trimming/tr1.jpeg';
-  const region = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'us-east-1';
+  const region = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'us-east-2';
 
   const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
   const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
