@@ -11,7 +11,7 @@ const navItems = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const onEscape = (event) => {
@@ -20,7 +20,7 @@ export default function Header() {
       }
     };
     const onScroll = () => {
-      setIsVisible(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 16);
     };
 
     window.addEventListener('keydown', onEscape);
@@ -34,7 +34,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`site-header ${isVisible ? 'visible' : ''}`}>
+    <header className={`site-header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-shell">
         <button
           type="button"
