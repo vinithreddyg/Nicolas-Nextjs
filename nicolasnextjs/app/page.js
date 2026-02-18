@@ -14,6 +14,7 @@ export default async function Page() {
     <main className="page">
       <HeroSection />
       <ServiceSections />
+      <div> display images</div>
       <DisplayWorkImages images={trimmingImages}/>
       <AboutSection />
       <MobileButton />
