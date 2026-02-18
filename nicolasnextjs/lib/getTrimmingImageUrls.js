@@ -1,17 +1,17 @@
-import { S3Client, ListObjectsV2Command, GetObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
 
 const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp'];
+const encodeS3Key = (key) => key.split('/').map(encodeURIComponent).join('/');
 
 export default async function getTrimmingImageUrls() {
-  const bucket = process.env.AWS_BUCKET_NAME;
+  const bucket = process.env.AWS_BUCKET_NAME || process.env.AWS_S3_BUCKET_NAME;
   const prefix = process.env.S3_TRIMMING_PREFIX || 'Trimming/';
   const referenceKey = process.env.S3_TRIMMING_REFERENCE_KEY || 'Trimming/tr1.jpeg';
   const region =
     process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || process.env.AWS_S3_REGION || 'us-east-2';
 
-  const accessKeyId = process.env.AWS_ACCESS_KEY_ID ;
-  const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+  const accessKeyId = process.env.AWS_ACCESS_KEY_ID || process.env.AWS_S3_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || process.env.AWS_S3_SECRET_ACCESS_KEY;
 
   if (!bucket || !accessKeyId || !secretAccessKey) {
     return [];
@@ -19,7 +19,7 @@ export default async function getTrimmingImageUrls() {
 
   const client = new S3Client({
     region,
-    credentials: { accessKeyId:process.env.AWS_ACCESS_KEY_ID, secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,}
+    credentials: { accessKeyId, secretAccessKey },
   });
 
   try {
@@ -29,13 +29,11 @@ export default async function getTrimmingImageUrls() {
         Prefix: prefix,
       }),
     );
-    console.log('S3 ListObjectsV2 response:', response);
 
     const listedKeys = (response.Contents || [])
       .map((item) => item.Key)
       .filter(Boolean)
       .filter((key) => IMAGE_EXTENSIONS.some((ext) => key.toLowerCase().endsWith(ext)));
-      console.log('Listed trimming image keys:', listedKeys);
 
     const keys = Array.from(
       new Set([
@@ -44,22 +42,12 @@ export default async function getTrimmingImageUrls() {
       ]),
     ).sort();
 
-    const signedUrls = await Promise.all(
-      keys.map((key) =>
-        getSignedUrl(
-          client,
-          new GetObjectCommand({
-            Bucket: bucket,
-            Key: key,
-          }),
-          { expiresIn: 60 * 60 },
-        ),
-      ),
+    const publicUrls = keys.map(
+      (key) => `https://${bucket}.s3.${region}.amazonaws.com/${encodeS3Key(key)}`,
     );
-console.log('Trimming image URLs:', signedUrls);
-    return signedUrls;
-  } catch (error) {
-    console.error('Error generating trimming image URLs:', error);
+
+    return publicUrls;
+  } catch {
     return [];
   }
 }
