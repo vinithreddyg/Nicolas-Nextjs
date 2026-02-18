@@ -9,7 +9,7 @@ const services = [
   'And More',
 ];
 
-export default function ServiceSections({ trimmingImages = [] }) {
+export default function ServiceSections() {
   return (
     <section className="services" id="services">
       <h2>Our Services</h2>
@@ -20,7 +20,7 @@ export default function ServiceSections({ trimmingImages = [] }) {
               <span className="check">&#10003;</span>
               <span>{service}</span>
             </div>
-            {service === 'Trimming' && <DisplayWorkImages trimmingImages={trimmingImages} />}
+            {service === 'Trimming' && <DisplayWorkImages />}
           </div>
         ))}
       </div>

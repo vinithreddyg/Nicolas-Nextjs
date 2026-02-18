@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import getTrimmingImageUrls from '../lib/getTrimmingImageUrls';
 
 const fallbackImages = [
   'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80',
@@ -7,7 +8,8 @@ const fallbackImages = [
   'https://images.unsplash.com/photo-1599619351208-3e6c839d6828?auto=format&fit=crop&w=800&q=80',
 ];
 
-export default function DisplayWorkImages({ trimmingImages = [] }) {
+export default async function DisplayWorkImages() {
+  const trimmingImages = await getTrimmingImageUrls();
   const imageList =
     Array.isArray(trimmingImages) && trimmingImages.length > 0 ? trimmingImages : fallbackImages;
 
