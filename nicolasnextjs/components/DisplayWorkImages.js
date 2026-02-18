@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 const fallbackImages = [
   'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80',
   'https://images.unsplash.com/photo-1557429287-b2e26467fc2b?auto=format&fit=crop&w=800&q=80',
@@ -6,13 +8,20 @@ const fallbackImages = [
 ];
 
 export default function DisplayWorkImages({ images = [] }) {
-  const imageList = images.length > 0 ? images : fallbackImages;
+  const imageList = Array.isArray(images) && images.length > 0 ? images : fallbackImages;
 
   return (
     <section className="gallery-wrapper">
       <div className="gallery">
         {imageList.map((src, index) => (
-          <img key={src} src={src} alt={`Work image ${index + 1}`} />
+          <Image
+            key={`${src}-${index}`}
+            src={src}
+            alt={`Work image ${index + 1}`}
+            width={800}
+            height={600}
+            unoptimized={src.includes('X-Amz-Algorithm=AWS4-HMAC-SHA256')}
+          />
         ))}
       </div>
     </section>

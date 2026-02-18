@@ -17,6 +17,7 @@ export default async function Page() {
       <div> display images</div>
       <DisplayWorkImages images={trimmingImages}/>
       <AboutSection />
+       <AboutSection />
       <MobileButton />
     </main>
   );
