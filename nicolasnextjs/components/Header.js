@@ -71,8 +71,8 @@ export default function Header({ profileImageUrl = '' }) {
             <Image
               src={profileImageUrl}
               alt="Nicolas Landscaping logo"
-              width={32}
-              height={32}
+              width={56}
+              height={56}
               className="logo-image"
               onError={() => setLogoLoadFailed(true)}
             />

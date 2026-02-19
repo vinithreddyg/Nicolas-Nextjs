@@ -14,13 +14,13 @@ body { background: #f4f7f2; }
 
 .header-shell {
   position: relative;
-  min-height: 70px;
+  min-height: 86px;
   border-radius: 18px;
   background: linear-gradient(120deg, rgba(27, 78, 41, 0.9), rgba(12, 34, 19, 0.82));
   border: 1px solid rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(10px);
   display: grid;
-  grid-template-columns: 48px 1fr auto;
+  grid-template-columns: 48px auto 1fr;
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
@@ -29,7 +29,7 @@ body { background: #f4f7f2; }
 }
 
 .site-header.scrolled .header-shell {
-  min-height: 62px;
+  min-height: 72px;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
 }
 
@@ -67,12 +67,12 @@ body { background: #f4f7f2; }
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  justify-self: center;
+  justify-self: start;
 }
 
 .logo-mark {
-  width: 32px;
-  height: 32px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: #f9a825;
   color: #102a18;
@@ -82,11 +82,11 @@ body { background: #f4f7f2; }
   font-weight: 800;
 }
 .logo-image {
-  width: 32px;
-  height: 32px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.45);
 }
 
 .logo-text {
@@ -109,6 +109,7 @@ body { background: #f4f7f2; }
   border: 1px solid rgba(255, 255, 255, 0.2);
   min-height: 40px;
   justify-self: end;
+  margin-left: auto;
 }
 
 .rating-stars { color: #f9a825; font-size: .8rem; letter-spacing: .08em; }
@@ -469,11 +470,16 @@ body { background: #f4f7f2; }
     width: calc(100% - 10px);
   }
   .header-shell {
-    min-height: 62px;
+    min-height: 72px;
     padding: 8px 10px;
     border-radius: 16px;
   }
-  .site-header.scrolled .header-shell { min-height: 58px; }
+  .site-header.scrolled .header-shell { min-height: 66px; }
+  .logo-mark,
+  .logo-image {
+    width: 48px;
+    height: 48px;
+  }
   .logo-text { display: none; }
   .rating-pill { padding: 8px 10px; min-width: 52px; justify-content: center; }
   .rating-stars { display: none; }
