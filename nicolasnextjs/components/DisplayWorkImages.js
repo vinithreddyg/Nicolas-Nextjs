@@ -17,16 +17,18 @@ export default function DisplayWorkImages({ trimmingImages = [] }) {
 
   return (
     <section className="gallery-wrapper service-gallery-wrapper">
-      <div className="gallery service-gallery-grid">
+      <div className="service-gallery-grid">
         {imageList.map((src, index) => (
-          <Image
-            key={`${src}-${index}`}
-            src={src}
-            alt={`Trimming work image ${index + 1}`}
-            width={800}
-            height={600}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
+          <div className="service-gallery-item" key={`${src}-${index}`}>
+            <Image
+              src={src}
+              alt={`Trimming work image ${index + 1}`}
+              width={800}
+              height={600}
+              sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, (max-width: 1400px) 33vw, 25vw"
+              className="service-gallery-image"
+            />
+          </div>
         ))}
       </div>
     </section>
