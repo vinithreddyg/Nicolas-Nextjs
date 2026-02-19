@@ -19,11 +19,13 @@ export default async function Page() {
     getLandscapeDesignMediaUrls(),
     getProfileImageUrl(),
   ]);
+  const heroBackgroundImage =
+    mulchImages.find((item) => /\.(jpg|jpeg|png|webp)(\?|#|$)/i.test(item)) || '';
 
   return (
     <main className="page" id="top">
       <Header profileImageUrl={profileImageUrl} />
-      <HeroSection />
+      <HeroSection backgroundImageUrl={heroBackgroundImage} />
       <ServiceSections
         trimmingImages={trimmingImages}
         patiosImages={patiosImages}

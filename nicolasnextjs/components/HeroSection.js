@@ -1,8 +1,12 @@
-export default function HeroSection() {
+export default function HeroSection({ backgroundImageUrl }) {
+  const fallbackImageUrl =
+    "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80";
+  const heroBackgroundImageUrl = backgroundImageUrl || fallbackImageUrl;
+
   return (
     <section
       className="hero full-width-hero"
-      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80')" }}
+      style={{ backgroundImage: `url('${heroBackgroundImageUrl}')` }}
     >
       <div className="overlay">
         <h1>Nicolas Landscaping & Construction LLC</h1>
