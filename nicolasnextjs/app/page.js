@@ -1,6 +1,7 @@
 import HeroSection from '../components/HeroSection';
 import ServiceSections from '../components/ServiceSections';
 import AboutSection from '../components/AboutSection';
+import AppointmentSection from '../components/AppointmentSection';
 import MobileButton from '../components/MobileButton';
 import Header from '../components/Header';
 import getTrimmingImageUrls from '../lib/getTrimmingImageUrls';
@@ -20,6 +21,7 @@ export default async function Page() {
       <Header />
       <HeroSection />
       <ServiceSections trimmingImages={trimmingImages} patiosImages={patiosImages} />
+      <AppointmentSection />
       <AboutSection />
       <MobileButton />
     </main>

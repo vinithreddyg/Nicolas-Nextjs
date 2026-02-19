@@ -19,7 +19,7 @@ export default function AboutSection() {
           </ul>
         </div>
 
-        <div className="highlight" id="contact">
+        <div className="highlight">
           <p><strong>NJ License:</strong></p>
           <p className="license">13VH13569800</p>
           <p><strong>Phone:</strong> <a href="tel:17328676659">(732) 867-6659</a></p>
