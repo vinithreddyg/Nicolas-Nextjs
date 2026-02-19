@@ -200,6 +200,8 @@ body { background: #f4f7f2; }
 }
 .card {
   background: white;
+  width: 100%;
+  border: 0;
   padding: 25px;
   border-radius: 14px;
   display: flex;
@@ -209,8 +211,58 @@ body { background: #f4f7f2; }
   font-size: 1.1rem;
   font-weight: 600;
   box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  cursor: default;
+  text-align: center;
 }
 .check { color: #f9a825; font-size: 1.2rem; }
+.card-actionable {
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.card-actionable:hover,
+.card-actionable:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.12);
+  background: #f7fff7;
+  outline: 0;
+}
+
+.service-gallery-panel {
+  margin: 28px auto 0;
+  max-width: 1100px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 14px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8efe8;
+}
+.service-gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.service-gallery-header h3 {
+  margin: 0;
+  color: #1e5f2a;
+  font-size: clamp(1.1rem, 2.6vw, 1.45rem);
+}
+.close-gallery-btn {
+  border: 1px solid #2e7d32;
+  background: #fff;
+  color: #2e7d32;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.close-gallery-btn:hover,
+.close-gallery-btn:focus-visible {
+  background: #2e7d32;
+  color: #fff;
+  outline: 0;
+}
 
 .gallery-wrapper { padding: 1rem 0; }
 .gallery {
@@ -229,6 +281,21 @@ body { background: #f4f7f2; }
   object-fit: cover;
   border-radius: 16px;
   scroll-snap-align: center;
+}
+.service-gallery-wrapper { padding: 0; }
+.service-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  overflow: visible;
+  padding: 0;
+}
+.service-gallery-grid img {
+  width: 100%;
+  max-width: none;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
 }
 
 .s3-urls-section {
@@ -327,6 +394,17 @@ body { background: #f4f7f2; }
   }
   .icon { width: 24px; height: 24px; fill: currentColor; }
   .content { grid-template-columns: 1fr; text-align: center; }
+  .service-gallery-panel {
+    margin-top: 20px;
+    border-radius: 14px;
+    padding: 14px 10px;
+  }
+  .service-gallery-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+  }
+  .close-gallery-btn { width: 100%; }
 }
 @media (min-width: 768px) {
   .mobile-menu {
@@ -334,7 +412,17 @@ body { background: #f4f7f2; }
     width: min(360px, 100%);
   }
   .gallery img { width: 40%; height: 200px; }
+  .service-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .service-gallery-grid img { height: 220px; }
 }
 @media (min-width: 1024px) {
   .gallery img { width: 22%; height: 220px; }
+  .service-gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .service-gallery-grid img { height: 240px; }
 }
