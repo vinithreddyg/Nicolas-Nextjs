@@ -79,7 +79,6 @@ export default function Header({ profileImageUrl = '' }) {
           ) : (
             <span className="logo-mark">N</span>
           )}
-          <span className="logo-text">Nicolas Landscaping</span>
         </a>
 
         <a className="rating-pill" href="#contact">
