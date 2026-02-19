@@ -8,11 +8,11 @@ const services = [
   { name: 'Patios', hasGallery: true },
   { name: 'Lawn Service', hasGallery: false },
   { name: 'Trimming', hasGallery: true },
-  { name: 'Mulch Installation', hasGallery: false },
+  { name: 'Mulch Installation', hasGallery: true },
   { name: 'And More', hasGallery: false },
 ];
 
-export default function ServiceSections({ trimmingImages = [], patiosImages = [] }) {
+export default function ServiceSections({ trimmingImages = [], patiosImages = [], mulchImages = [] }) {
   const [activeGalleryService, setActiveGalleryService] = useState(null);
   const resolvedTrimmingImages = useMemo(
     () => (Array.isArray(trimmingImages) ? trimmingImages : []),
@@ -22,6 +22,22 @@ export default function ServiceSections({ trimmingImages = [], patiosImages = []
     () => (Array.isArray(patiosImages) ? patiosImages : []),
     [patiosImages]
   );
+  const resolvedMulchImages = useMemo(
+    () => (Array.isArray(mulchImages) ? mulchImages : []),
+    [mulchImages]
+  );
+  const activeGalleryImages = useMemo(() => {
+    if (activeGalleryService === 'Patios') {
+      return resolvedPatiosImages;
+    }
+    if (activeGalleryService === 'Mulch Installation') {
+      return resolvedMulchImages;
+    }
+    if (activeGalleryService === 'Trimming') {
+      return resolvedTrimmingImages;
+    }
+    return [];
+  }, [activeGalleryService, resolvedMulchImages, resolvedPatiosImages, resolvedTrimmingImages]);
 
   const handleServiceClick = (service) => {
     setActiveGalleryService((previous) => (previous === service ? null : service));
@@ -70,7 +86,7 @@ export default function ServiceSections({ trimmingImages = [], patiosImages = []
             </button>
           </div>
           <DisplayWorkImages
-            images={activeGalleryService === 'Patios' ? resolvedPatiosImages : resolvedTrimmingImages}
+            images={activeGalleryImages}
             serviceName={activeGalleryService}
           />
         </div>

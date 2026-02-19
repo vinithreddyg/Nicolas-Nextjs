@@ -6,15 +6,17 @@ import MobileButton from '../components/MobileButton';
 import Header from '../components/Header';
 import getTrimmingImageUrls from '../lib/getTrimmingImageUrls';
 import getPatiosImageUrls from '../lib/getPatiosImageUrls';
+import getLandscapeDesignMediaUrls from '../lib/getLandscapeDesignMediaUrls';
 import getProfileImageUrl from '../lib/getProfileImageUrl';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 export default async function Page() {
-  const [trimmingImages, patiosImages, profileImageUrl] = await Promise.all([
+  const [trimmingImages, patiosImages, mulchImages, profileImageUrl] = await Promise.all([
     getTrimmingImageUrls(),
     getPatiosImageUrls(),
+    getLandscapeDesignMediaUrls(),
     getProfileImageUrl(),
   ]);
 
@@ -22,7 +24,11 @@ export default async function Page() {
     <main className="page" id="top">
       <Header profileImageUrl={profileImageUrl} />
       <HeroSection />
-      <ServiceSections trimmingImages={trimmingImages} patiosImages={patiosImages} />
+      <ServiceSections
+        trimmingImages={trimmingImages}
+        patiosImages={patiosImages}
+        mulchImages={mulchImages}
+      />
       <AppointmentSection />
       <AboutSection />
       <MobileButton />
