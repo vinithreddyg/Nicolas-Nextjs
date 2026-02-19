@@ -9,11 +9,8 @@ const fallbackImages = [
   'https://images.unsplash.com/photo-1599619351208-3e6c839d6828?auto=format&fit=crop&w=800&q=80',
 ];
 
-export default function DisplayWorkImages({ trimmingImages = [] }) {
-  const imageList =
-    Array.isArray(trimmingImages) && trimmingImages.length > 0
-      ? trimmingImages
-      : fallbackImages;
+export default function DisplayWorkImages({ images = [], serviceName = 'Service' }) {
+  const imageList = Array.isArray(images) && images.length > 0 ? images : fallbackImages;
 
   return (
     <section className="gallery-wrapper service-gallery-wrapper">
@@ -22,7 +19,7 @@ export default function DisplayWorkImages({ trimmingImages = [] }) {
           <div className="service-gallery-item" key={`${src}-${index}`}>
             <Image
               src={src}
-              alt={`Trimming work image ${index + 1}`}
+              alt={`${serviceName} work image ${index + 1}`}
               width={800}
               height={600}
               sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, (max-width: 1400px) 33vw, 25vw"
