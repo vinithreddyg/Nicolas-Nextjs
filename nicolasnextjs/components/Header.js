@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
 const navItems = [
@@ -9,9 +10,14 @@ const navItems = [
   { label: 'Contact', href: '#contact' },
 ];
 
-export default function Header() {
+export default function Header({ profileImageUrl = '' }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [logoLoadFailed, setLogoLoadFailed] = useState(false);
+
+  useEffect(() => {
+    setLogoLoadFailed(false);
+  }, [profileImageUrl]);
 
   useLayoutEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -61,7 +67,18 @@ export default function Header() {
         </button>
 
         <a href="#top" className="header-logo" onClick={() => setMenuOpen(false)}>
-          <span className="logo-mark">N</span>
+          {profileImageUrl && !logoLoadFailed ? (
+            <Image
+              src={profileImageUrl}
+              alt="Nicolas Landscaping logo"
+              width={32}
+              height={32}
+              className="logo-image"
+              onError={() => setLogoLoadFailed(true)}
+            />
+          ) : (
+            <span className="logo-mark">N</span>
+          )}
           <span className="logo-text">Nicolas Landscaping</span>
         </a>
 
