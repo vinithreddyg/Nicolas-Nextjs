@@ -23,6 +23,16 @@ export default function AboutSection() {
           <p><strong>NJ License:</strong></p>
           <p className="license">13VH13569800</p>
           <p><strong>Phone:</strong> <a href="tel:17328676659">(732) 867-6659</a></p>
+          <p>
+            <strong>Facebook:</strong>{' '}
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              Nicolas landscaping &amp; construction llc
+            </a>
+          </p>
+          <p>
+            <strong>Email:</strong>{' '}
+            <a href="mailto:nicolaslandscapingnj@gmail.com">nicolaslandscapingnj@gmail.com</a>
+          </p>
         </div>
       </div>
     </section>
