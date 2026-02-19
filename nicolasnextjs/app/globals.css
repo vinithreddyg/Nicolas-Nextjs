@@ -302,6 +302,23 @@ body { background: #f4f7f2; }
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+.service-gallery-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #edf3ed, #dce8dc);
+}
+.service-gallery-placeholder-tag {
+  background: #1e5f2a;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
 
 .s3-urls-section {
   padding: 80px 20px;
