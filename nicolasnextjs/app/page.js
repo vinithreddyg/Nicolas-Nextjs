@@ -31,7 +31,7 @@ export default async function Page() {
         patiosImages={patiosImages}
         mulchImages={mulchImages}
       />
-      <AppointmentSection />
+      <AppointmentSection backgroundImageUrl={heroBackgroundImage} />
       <AboutSection />
       <MobileButton />
     </main>

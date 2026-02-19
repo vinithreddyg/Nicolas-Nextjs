@@ -12,9 +12,12 @@ const initialFormData = {
   notes: '',
 };
 
-export default function AppointmentSection() {
+export default function AppointmentSection({ backgroundImageUrl }) {
   const [formData, setFormData] = useState(initialFormData);
   const [submitted, setSubmitted] = useState(false);
+  const fallbackImageUrl =
+    "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=80";
+  const appointmentBackgroundImageUrl = backgroundImageUrl || fallbackImageUrl;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,7 +31,11 @@ export default function AppointmentSection() {
   };
 
   return (
-    <section className="appointment" id="contact">
+    <section
+      className="appointment"
+      id="contact"
+      style={{ backgroundImage: `url('${appointmentBackgroundImageUrl}')` }}
+    >
       <div className="appointment-shell">
         <div className="appointment-copy">
           <h2>Schedule an Appointment</h2>
