@@ -7,7 +7,7 @@ const encodeS3Key = (key) => key.split('/').map(encodeURIComponent).join('/');
 
 export default async function getLandscapeDesignMediaUrls() {
   const bucket = process.env.AWS_BUCKET_NAME || process.env.AWS_S3_BUCKET_NAME;
-  const prefix = process.env.S3_LANDSCAPE_DESIGNS_PREFIX || 'Landscape Designs/';
+  const prefix = process.env.S3_LANDSCAPE_DESIGNS_PREFIX || 'Landscape designs/';
   const referenceKey = process.env.S3_LANDSCAPE_DESIGNS_REFERENCE_KEY || '';
   const region =
     process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || process.env.AWS_S3_REGION || 'us-east-2';
